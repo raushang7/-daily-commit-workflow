@@ -19,7 +19,7 @@ jobs:
 
     - name: Commit and push changes
       run: |
-        git config --global user.name "github-actions[bot]"
+        git config --global user.name " 23f3003400@ds.study.iitm.ac.in "
         git config --global user.email "23f3003400@ds.study.iitm.ac.in"
         git add .
         git diff --cached --quiet || git commit -m "Daily commit: $(date)"
