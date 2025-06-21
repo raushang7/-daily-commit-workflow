@@ -2,27 +2,22 @@ name: Daily Commit
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # Runs daily at midnight UTC
-  workflow_dispatch:     # Allows manual run
+    - cron: '15 6 * * *'  # Runs daily at 6:15 AM UTC (change as needed)
 
 jobs:
-  auto-commit:
+  daily-commit:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Make a change to trigger a commit
-      run: |
-        echo "Committed on $(date)" >> daily-log.txt
-
-    - name: Commit and push changes
-      run: |
-        git config --global user.name " 23f3003400@ds.study.iitm.ac.in "
-        git config --global user.email "23f3003400@ds.study.iitm.ac.in"
-        git add .
-        git diff --cached --quiet || git commit -m "Daily commit: $(date)"
-        git push
+      - name: Commit for 23f3003400@ds.study.iitm.ac.in
+        run: |
+          git config --global user.name "DevSync Bot"
+          git config --global user.email "23f3003400@ds.study.iitm.ac.in"
+          date > update.txt
+          git add update.txt
+          git commit -m "Automated daily update"
+          git push
 
 
